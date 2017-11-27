@@ -15,5 +15,5 @@ Any JVM based language
 
 
 ### Running the tests
-
- Make it: `make installcheck`
+ From plj-java run `maven exec:java`
+ Then from the main dir run `make installcheck`
