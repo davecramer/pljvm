@@ -1,41 +1,32 @@
 #------------------------------------------------------------------------------
 #
-#  
 # 
-# 
+# Copyright (c) 2016, Pivotal.
+#
+#------------------------------------------------------------------------------
+MODULE_big = pljvm
 
-# Global build Directories
 
-PLCONTAINER_DIR = ../src
+ifeq ($(CIBUILD),1)
+  IMAGE_TAG=devel
+else
+  IMAGE_TAG=$(PLCONTAINER_VERSION).$(PLCONTAINER_RELEASE)-$(PLCONTAINER_IMAGE_VERSION)
+endif
+
+# Directories
+
+SRCDIR = ./src
+
+EXTENSION 	= pljvm
+MODULE_big 	= pljvm
+REGRESS 	= pljvm
+# Files to build
+FILES 	= $(shell find $(SRCDIR) -not -path "*client*" -type f -name "*.c")
+OBJS 	= $(foreach FILE,$(FILES),$(subst .c,.o,$(FILE)))
+DATA	= pljvm--1.0.0.sql 
+
+PG_CONFIG = pg_config
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)
 
 
-override CFLAGS += $(CUSTOMFLAGS) -I$(PLCONTAINER_DIR)/ -DCOMM_STANDALONE -Wall -Wextra 
-
-common_src = $(shell find $(PLCONTAINER_DIR)/common -name "*.c")
-common_objs = $(foreach src,$(common_src),$(subst .c,.o,$(src)))
-test_src = $(shell find . -name "*.c")
-test_objs = $(foreach src,$(test_src),$(subst .c,.o,$(src)))
-
-.PHONY: default
-default: clean all
-
-.PHONY: clean_common
-clean_common:
-	rm -f $(common_objs)
-
-%.o: %.c
-	$(CC)  $(CFLAGS) -c -o $@ $^
-
-main: $(test_objs) $(common_objs)
-	LIBRARY_PATH=$(LD_LIBRARY_PATH) $(CC) -o $@ $^ $(LIBS)
-
-.PHONY: debug
-debug: CUSTOMFLAGS = -D_DEBUG_CLIENT -g -O0
-debug: main
-
-.PHONY: all
-all: CUSTOMFLAGS = -O3
-all: main
-
-clean: clean_common
-	rm -f *.o
