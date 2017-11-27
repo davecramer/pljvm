@@ -1,0 +1,5 @@
+# pljvm extension
+comment = 'execute remote functions inside jvm'
+default_version = '1.0.0'
+module_pathname = '$libdir/pljvm'
+relocatable = true
