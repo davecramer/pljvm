@@ -7,8 +7,8 @@ public class DoubleArgument extends Argument {
 
 
   public DoubleArgument(StringBuffer name, Double value) {
+    super(name);
     clazz = Double.class;
-    this.name = name.length()==0?null:name.toString();
     this.value = value;
   }
   public static  DoubleArgument getInstance(StringBuffer name, ByteBuf byteBuf)

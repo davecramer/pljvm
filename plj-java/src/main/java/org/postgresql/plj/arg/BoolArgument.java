@@ -6,9 +6,10 @@ import io.netty.buffer.ByteBuf;
 public class BoolArgument extends Argument {
 
   public BoolArgument(StringBuffer name, Boolean value) {
+    super(name);
     clazz = boolean.class;
-    this.name = name.length()==0?null:name.toString();
     this.value = value;
+
   }
   public static BoolArgument getInstance(StringBuffer name, ByteBuf byteBuf)
   {

@@ -10,6 +10,14 @@ public abstract class Argument {
   String name;
   Class clazz;
 
+  public Argument(StringBuffer name){
+    if ( name != null) {
+      this.name = name.length() == 0 ? null : name.toString();
+    }else {
+      this.name = null;
+    }
+  }
+
   public static Argument readArgument(ByteBuf byteBuf)
   {
 
@@ -60,6 +68,8 @@ public abstract class Argument {
       case PLJVM_DATA_ARRAY:
         retVal = ArrayArgument.getInstance(name, type.getSubTypes()[0], byteBuf);
         break;
+      case PLJVM_DATA_UDT:
+        retVal = UDTArgument.getInstance(name, type, byteBuf);
     }
     return retVal;
   }

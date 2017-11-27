@@ -6,8 +6,8 @@ import io.netty.buffer.ByteBuf;
 public class Int16Argument extends Argument {
 
   public Int16Argument(StringBuffer name, Short value) {
+    super(name);
     clazz = Short.class;
-    this.name = name.length()==0?null:name.toString();
     this.value = value;
   }
   public static  Int16Argument getInstance(StringBuffer name, ByteBuf byteBuf)

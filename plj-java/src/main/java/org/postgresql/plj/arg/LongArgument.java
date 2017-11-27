@@ -6,8 +6,8 @@ import io.netty.buffer.ByteBuf;
 public class LongArgument extends Argument {
 
   public LongArgument(StringBuffer name, Long value) {
+    super(name);
     clazz = Long.class;
-    this.name = name.length()==0?null:name.toString();
     this.value = value;
   }
   public static  LongArgument getInstance(StringBuffer name, ByteBuf byteBuf)

@@ -7,9 +7,8 @@ public class FloatArgument extends Argument{
 
 
   public FloatArgument(StringBuffer name, Float value) {
+    super(name);
     clazz = Float.class;
-    this.name = name.length()==0?null:name.toString();
-
     this.value = value;
   }
 

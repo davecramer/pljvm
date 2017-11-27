@@ -9,8 +9,8 @@ import java.lang.reflect.Array;
 public class ArrayArgument extends Argument {
 
     public ArrayArgument(StringBuffer name, Object value){
+        super(name);
         clazz = value.getClass();
-        this.name = name.length()==0?null:name.toString();
         this.value = value;
     }
     public static  ArrayArgument getInstance(StringBuffer name, Type type, ByteBuf byteBuf)

@@ -9,8 +9,8 @@ public class StringArgument extends Argument {
 
 
   public StringArgument(StringBuffer name, String value) {
+    super(name);
     clazz = String.class;
-    this.name = name.length()==0?null:name.toString();
     this.value = value;
   }
   public static  StringArgument getInstance(StringBuffer name, ByteBuf byteBuf)

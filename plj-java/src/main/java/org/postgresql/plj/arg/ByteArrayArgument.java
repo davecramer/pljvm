@@ -6,8 +6,8 @@ public class ByteArrayArgument extends Argument {
 
 
     public ByteArrayArgument(StringBuffer name, int length) {
+        super(name);
         this.clazz = byte[].class;
-        this.name =name.length()==0?null:name.toString();
         this.value = new byte[length];
     }
     public static  ByteArrayArgument getInstance(StringBuffer name, ByteBuf byteBuf)
