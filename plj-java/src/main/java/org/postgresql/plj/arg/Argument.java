@@ -1,5 +1,6 @@
 package org.postgresql.plj.arg;
 
+import org.postgresql.plj.DataType;
 import org.postgresql.plj.Type;
 import org.postgresql.plj.util.Util;
 
@@ -9,6 +10,7 @@ public abstract class Argument {
   Object value;
   String name;
   Class clazz;
+  DataType dataType;
 
   public Argument(String name){
     if ( name != null) {
@@ -71,6 +73,8 @@ public abstract class Argument {
       case PLJVM_DATA_UDT:
         retVal = UDTArgument.getInstance(name, type, byteBuf);
     }
+    retVal.dataType = type.getDataType();
+
     return retVal;
   }
   public Object getValue(){
@@ -79,4 +83,6 @@ public abstract class Argument {
   public Class getClazz() {
     return clazz;
   }
+  public String getName() { return name;}
+  public DataType getDataType() { return dataType; }
 }

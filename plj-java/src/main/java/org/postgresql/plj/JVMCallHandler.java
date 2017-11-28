@@ -15,6 +15,7 @@ import org.postgresql.plj.message.CallRequest;
 import org.postgresql.plj.message.CallResponse;
 import org.postgresql.plj.message.ExceptionResponse;
 import org.postgresql.plj.message.LogResponse;
+import org.postgresql.plj.util.Util;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -54,16 +55,23 @@ public class JVMCallHandler extends ChannelInboundHandlerAdapter {
         Class<?> argTypes[] = new Class[callRequest.getNumArgs()];
         Object args[] = new Object[callRequest.getNumArgs()];
 
-        int i=0;
-
-        for (Argument arg:callRequest.getArgs()){
-            argTypes[i] = arg.getClazz();
-            args[i++] = arg.getValue();
-        }
-
         int pos = functionName.lastIndexOf('.');
         String className = functionName.substring(0, pos);
         String methodName = functionName.substring(pos+1);
+
+        int i=0;
+
+        for (Argument arg:callRequest.getArgs()){
+            if ( arg.getDataType() == DataType.PLJVM_DATA_UDT ) {
+                Object udt = Util.getInstanceOf(className, (Argument [])arg.getValue());
+                argTypes[i]=udt.getClass();
+                args[i++]=udt;
+            }else {
+                argTypes[i] = arg.getClazz();
+                args[i++] = arg.getValue();
+            }
+        }
+
         Object ret = null;
         try {
 

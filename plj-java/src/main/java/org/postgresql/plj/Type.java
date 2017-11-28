@@ -45,6 +45,18 @@ public class Type {
         typeName = "text";
         clazz = String.class;
         break;
+      case PLJVM_DATA_ARRAY:
+        typeName = "array";
+        clazz = Array.class;
+        break;
+      case PLJVM_DATA_BYTEA:
+        typeName =  "bytea";
+        clazz = byte[].class;
+        break;
+      case PLJVM_DATA_UDT:
+        typeName = "udt";
+        clazz = Object.class;
+        break;
 
     }
   }
