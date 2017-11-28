@@ -5,12 +5,12 @@ import io.netty.buffer.ByteBuf;
 
 public class LongArgument extends Argument {
 
-  public LongArgument(StringBuffer name, Long value) {
+  public LongArgument(String name, Long value) {
     super(name);
     clazz = Long.class;
     this.value = value;
   }
-  public static  LongArgument getInstance(StringBuffer name, ByteBuf byteBuf)
+  public static  LongArgument getInstance(String name, ByteBuf byteBuf)
   {
     if (byteBuf.readableBytes()>=1) {
       if ( byteBuf.readByte() == 'D' ) {

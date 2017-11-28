@@ -8,12 +8,12 @@ import java.nio.charset.Charset;
 public class StringArgument extends Argument {
 
 
-  public StringArgument(StringBuffer name, String value) {
+  public StringArgument(String name, String value) {
     super(name);
     clazz = String.class;
     this.value = value;
   }
-  public static  StringArgument getInstance(StringBuffer name, ByteBuf byteBuf)
+  public static  StringArgument getInstance(String name, ByteBuf byteBuf)
   {
     if (byteBuf.readableBytes()>=1) {
       byte isNull = byteBuf.readByte();

@@ -6,12 +6,12 @@ import io.netty.buffer.ByteBuf;
 public class DoubleArgument extends Argument {
 
 
-  public DoubleArgument(StringBuffer name, Double value) {
+  public DoubleArgument(String name, Double value) {
     super(name);
     clazz = Double.class;
     this.value = value;
   }
-  public static  DoubleArgument getInstance(StringBuffer name, ByteBuf byteBuf)
+  public static  DoubleArgument getInstance(String name, ByteBuf byteBuf)
   {
 
     if (byteBuf.readableBytes()>=1) {

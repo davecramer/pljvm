@@ -8,12 +8,12 @@ import java.lang.reflect.Array;
 
 public class ArrayArgument extends Argument {
 
-    public ArrayArgument(StringBuffer name, Object value){
+    public ArrayArgument(String name, Object value){
         super(name);
         clazz = value.getClass();
         this.value = value;
     }
-    public static  ArrayArgument getInstance(StringBuffer name, Type type, ByteBuf byteBuf)
+    public static  ArrayArgument getInstance(String name, Type type, ByteBuf byteBuf)
     {
 
         if (byteBuf.readableBytes()>=1) {

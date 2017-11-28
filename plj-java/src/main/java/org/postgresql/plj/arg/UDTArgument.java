@@ -8,12 +8,12 @@ import org.postgresql.plj.Type;
 public class UDTArgument extends Argument {
 
 
-    public UDTArgument(StringBuffer name, Argument []value) {
+    public UDTArgument(String name, Argument []value) {
         super(name);
         clazz = String.class;
         this.value = value;
     }
-    public static  UDTArgument getInstance(StringBuffer name, Type type, ByteBuf byteBuf)
+    public static  UDTArgument getInstance(String name, Type type, ByteBuf byteBuf)
     {
         Argument args[];
         if (byteBuf.readableBytes()>=1) {

@@ -159,6 +159,7 @@ public class Type {
   public Type getSubType(int n){
     return subTypes[n];
   }
+  public String getTypeName() { return typeName;}
 
   public DataType getDataType() {
     return dataType;

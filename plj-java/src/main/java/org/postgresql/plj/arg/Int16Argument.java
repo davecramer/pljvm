@@ -5,12 +5,12 @@ import io.netty.buffer.ByteBuf;
 
 public class Int16Argument extends Argument {
 
-  public Int16Argument(StringBuffer name, Short value) {
+  public Int16Argument(String name, Short value) {
     super(name);
     clazz = Short.class;
     this.value = value;
   }
-  public static  Int16Argument getInstance(StringBuffer name, ByteBuf byteBuf)
+  public static  Int16Argument getInstance(String name, ByteBuf byteBuf)
   {
     if (byteBuf.readableBytes()>=1) {
       if ( byteBuf.readByte() == 'D' ) {

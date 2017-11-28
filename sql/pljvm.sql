@@ -1,5 +1,16 @@
 CREATE EXTENSION pljvm;
 
+CREATE TYPE test_type AS (
+        a boolean,
+        b smallint,
+        c integer,
+        d bigint,
+        e real,
+        f double precision,
+        g numeric,
+        h character varying
+);
+
 CREATE OR REPLACE FUNCTION pljvm_log100(d float8) RETURNS float8 AS $$
 org.postgresql.plj.test.Math.log10
 $$ LANGUAGE pljvm;
@@ -68,6 +79,11 @@ CREATE OR REPLACE FUNCTION pljvm_log(msg text) returns void as $$
 org.postgresql.plj.test.Log.log
 $$ language 'pljvm';
 
+CREATE FUNCTION pljvm_test_type(udt test_type) RETURNS test_type
+    LANGUAGE pljvm
+    AS $$
+org.postgresql.plj.test.TestType.echo
+$$;
 
 select pljvm_log100(100);
 select pljvm_bool(true);

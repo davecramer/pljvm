@@ -10,9 +10,9 @@ public abstract class Argument {
   String name;
   Class clazz;
 
-  public Argument(StringBuffer name){
+  public Argument(String name){
     if ( name != null) {
-      this.name = name.length() == 0 ? null : name.toString();
+      this.name = name.length() == 0 ? null : name;
     }else {
       this.name = null;
     }
@@ -33,10 +33,10 @@ public abstract class Argument {
       return null;
     }
 
-    return readArgument(type, name, byteBuf);
+    return readArgument(type, name.toString(), byteBuf);
 
   }
-  public static Argument readArgument (Type type, StringBuffer name,  ByteBuf byteBuf)
+  public static Argument readArgument (Type type, String name,  ByteBuf byteBuf)
   {
     Argument retVal = null;
 

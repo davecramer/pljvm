@@ -5,13 +5,13 @@ import io.netty.buffer.ByteBuf;
 
 public class BoolArgument extends Argument {
 
-  public BoolArgument(StringBuffer name, Boolean value) {
+  public BoolArgument(String name, Boolean value) {
     super(name);
     clazz = boolean.class;
     this.value = value;
 
   }
-  public static BoolArgument getInstance(StringBuffer name, ByteBuf byteBuf)
+  public static BoolArgument getInstance(String name, ByteBuf byteBuf)
   {
     if (byteBuf.readableBytes()>=1) {
       if ( byteBuf.readByte() == 'D' ) {
