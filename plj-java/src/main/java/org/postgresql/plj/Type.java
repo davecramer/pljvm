@@ -136,6 +136,10 @@ public class Type {
       type.clazz = clazz;
       type.numSubtypes = 1;
       type.subTypes=new Type[] {Type.getInstance(getArryTypeFromClass(clazz))};
+    }else{
+      type = new Type(DataType.PLJVM_DATA_UDT);
+      type.clazz = clazz;
+
     }
 
     return type;

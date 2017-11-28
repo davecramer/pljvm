@@ -7,7 +7,7 @@ public class TestType {
   long d;
   float e;
   double f;
-  float n;
+  double g;
   String h;
 
   public TestType echo(TestType testType) {return testType;}
@@ -24,7 +24,7 @@ public class TestType {
     return b;
   }
 
-  public void setB(short b) {
+  public void setB(Short b) {
     this.b = b;
   }
 
@@ -32,7 +32,7 @@ public class TestType {
     return c;
   }
 
-  public void setC(int c) {
+  public void setC(Integer c) {
     this.c = c;
   }
 
@@ -40,7 +40,7 @@ public class TestType {
     return d;
   }
 
-  public void setD(long d) {
+  public void setD(Long d) {
     this.d = d;
   }
 
@@ -48,7 +48,7 @@ public class TestType {
     return e;
   }
 
-  public void setE(float e) {
+  public void setE(Float e) {
     this.e = e;
   }
 
@@ -56,16 +56,16 @@ public class TestType {
     return f;
   }
 
-  public void setF(double f) {
+  public void setF(Double f) {
     this.f = f;
   }
 
-  public float getN() {
-    return n;
+  public double getG() {
+    return g;
   }
 
-  public void setN(float n) {
-    this.n = n;
+  public void setG(Double g) {
+    this.g = g;
   }
 
   public String getH() {
