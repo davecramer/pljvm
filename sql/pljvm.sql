@@ -1,5 +1,4 @@
 CREATE EXTENSION pljvm;
-
 CREATE TYPE test_type AS (
         a boolean,
         b smallint,
@@ -79,11 +78,9 @@ CREATE OR REPLACE FUNCTION pljvm_log(msg text) returns void as $$
 org.postgresql.plj.test.Log.log
 $$ language 'pljvm';
 
-CREATE FUNCTION pljvm_test_type(udt test_type) RETURNS test_type
-    LANGUAGE pljvm
-    AS $$
+CREATE OR REPLACE FUNCTION pljvm_test_type( udt test_type) returns test_type as $$
 org.postgresql.plj.test.TestType.echo
-$$;
+$$ language 'pljvm';
 
 select pljvm_log100(100);
 select pljvm_bool(true);
