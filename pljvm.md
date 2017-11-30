@@ -32,15 +32,32 @@
         - encodes the response and sends it back
         - returns control back to the C code in the server
 	- currently the code can deal with any base type and arrays of base types
+    - working on UDT's but have the issue of how to figure out the postgresql type -> java type mapping
+
 
 ## What problems does this solve?
 
 - synchronous notification of data changes
-- alternatives pl/java logical replication.
-- what makes it so special it can be used with any jvm based language
-- performance
+- alternatives pl/java [Logical Decoding](https://github.com/davecramer/LogicalDecode).
+- what makes it so special it can be used with any [JVM based language](https://en.wikipedia.org/wiki/List_of_JVM_languages)
+- performance 
+   - looks like the overhead is around 1ms. 
+   - 10000 iterations of calling a sql function to add two numbers takes .193 ms per call
+   - ```CREATE OR REPLACE FUNCTION sql_add(i int4, j int4) RETURNS int4 AS $$
+        select i+j;
+        $$ LANGUAGE sql;```
+   - 10000 iterations of calling a pljvm function to add two numbers takes 1.105 ms per call
+   - ```CREATE OR REPLACE FUNCTION pljvm_add(i int4, j int4) RETURNS int4 AS $$
+        org.postgresql.plj.test.Int.add
+        $$ LANGUAGE pljvm;```
+
 - need help with 
 - classpath separation
+    - since calls are being handled by the same JVM don't want to leak data from one postgresql process to another
 - library or full fledged application?
+    - currently the library could be used by any JVM easily
 - how to pass UDT's where do I get the package name from
+    - the problem is that we can't pass package information along with the name of the UDT
 - autoboxing ?
+    - how to call a method defined as public int add(int i, int j) or public Integer add(Integer i, Integer j)
+    
