@@ -1,4 +1,4 @@
-#PLJVM PostgreSQL procedural language for JAVA
+# PLJVM PostgreSQL procedural language for JAVA
 
 ## PL/JVM enables calling arbitrary java methods on objects running in your code.
 - came from [PL/J](https://github.com/codehaus/plj) 
